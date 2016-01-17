@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `DirectMessage` enum in crate `routing`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, DirectMessage">
+
+    <title>routing::messages::DirectMessage - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    <link rel="shortcut icon" href="http://maidsafe.net/img/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../routing/index.html'><img src='https://raw.githubusercontent.com/maidsafe/QA/master/Images/maidsafe_logo.png' alt='' width='100'></a>
+        <p class='location'><a href='../index.html'>routing</a>::<wbr><a href='index.html'>messages</a></p><script>window.sidebarCurrent = {name: 'DirectMessage', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>routing</a>::<wbr><a href='index.html'>messages</a>::<wbr><a class='enum' href=''>DirectMessage</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-2231' class='srclink' href='../../src/routing/messages.rs.html#40-62' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum DirectMessage {
+    BootstrapIdentify {
+        public_id: <a class='struct' href='../../routing/id/struct.PublicId.html' title='routing::id::PublicId'>PublicId</a>,
+        current_quorum_size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    },
+    ClientIdentify {
+        serialised_public_id: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;,
+        signature: <a class='struct' href='../../sodiumoxide/crypto/sign/ed25519/struct.Signature.html' title='sodiumoxide::crypto::sign::ed25519::Signature'>Signature</a>,
+    },
+    NodeIdentify {
+        serialised_public_id: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;,
+        signature: <a class='struct' href='../../sodiumoxide/crypto/sign/ed25519/struct.Signature.html' title='sodiumoxide::crypto::sign::ed25519::Signature'>Signature</a>,
+    },
+}</pre><div class='docblock'><p>Messages sent direct to a node
+Allows routing to directly send specific messages between nodes</p>
+</div><h2 class='variants'>Variants</h2>
+<table><tr><td id='variant.BootstrapIdentify'><code>BootstrapIdentify</code></td><td><div class='docblock'><p>Sent from bootstrap node to client</p>
+</div><h3 class='fields'>Fields</h3>
+
+                                              <table><tr><td id='variant.BootstrapIdentify.field.public_id'><code>public_id</code></td><td><div class='docblock'><p>keys and clamed name</p>
+</div></td></tr><tr><td id='variant.BootstrapIdentify.field.current_quorum_size'><code>current_quorum_size</code></td><td><div class='docblock'><p>quorum size, dynamically calculated</p>
+</div></td></tr></table></td></tr><tr><td id='variant.ClientIdentify'><code>ClientIdentify</code></td><td><div class='docblock'><p>Sent form client -&gt; bootstrap node</p>
+</div><h3 class='fields'>Fields</h3>
+
+                                              <table><tr><td id='variant.ClientIdentify.field.serialised_public_id'><code>serialised_public_id</code></td><td><div class='docblock'><p>keys and claimed name. Serialised outside routing</p>
+</div></td></tr><tr><td id='variant.ClientIdentify.field.signature'><code>signature</code></td><td><div class='docblock'><p>Signature of the originator of this message</p>
+</div></td></tr></table></td></tr><tr><td id='variant.NodeIdentify'><code>NodeIdentify</code></td><td><div class='docblock'><p>Sent form a node to a node</p>
+</div><h3 class='fields'>Fields</h3>
+
+                                              <table><tr><td id='variant.NodeIdentify.field.serialised_public_id'><code>serialised_public_id</code></td><td><div class='docblock'><p>keys and claimed name, serialised outside routing</p>
+</div></td></tr><tr><td id='variant.NodeIdentify.field.signature'><code>signature</code></td><td><div class='docblock'><p>Signature of the originator of this message</p>
+</div></td></tr></table></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='../../rustc_serialize/serialize/trait.Decodable.html' title='rustc_serialize::serialize::Decodable'>Decodable</a> for <a class='enum' href='../../routing/messages/enum.DirectMessage.html' title='routing::messages::DirectMessage'>DirectMessage</a></code></h3><div class='impl-items'><h4 id='method.decode' class='method'><code>fn <a href='../../rustc_serialize/serialize/trait.Decodable.html#method.decode' class='fnname'>decode</a>&lt;__D: <a class='trait' href='../../rustc_serialize/serialize/trait.Decoder.html' title='rustc_serialize::serialize::Decoder'>Decoder</a>&gt;(__arg_0: &amp;mut __D) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='../../routing/messages/enum.DirectMessage.html' title='routing::messages::DirectMessage'>DirectMessage</a>, __D::Error&gt;</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../rustc_serialize/serialize/trait.Encodable.html' title='rustc_serialize::serialize::Encodable'>Encodable</a> for <a class='enum' href='../../routing/messages/enum.DirectMessage.html' title='routing::messages::DirectMessage'>DirectMessage</a></code></h3><div class='impl-items'><h4 id='method.encode' class='method'><code>fn <a href='../../rustc_serialize/serialize/trait.Encodable.html#method.encode' class='fnname'>encode</a>&lt;__S: <a class='trait' href='../../rustc_serialize/serialize/trait.Encoder.html' title='rustc_serialize::serialize::Encoder'>Encoder</a>&gt;(&amp;self, __arg_0: &amp;mut __S) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, __S::Error&gt;</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../routing/messages/enum.DirectMessage.html' title='routing::messages::DirectMessage'>DirectMessage</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "routing";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
